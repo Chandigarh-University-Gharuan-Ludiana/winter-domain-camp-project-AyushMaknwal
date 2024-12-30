@@ -1,0 +1,21 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const emailList = document.getElementById('email-list');
+
+    // Sample email data
+    const emails = [
+        { sender: 'user1@example.com', subject: 'Meeting Update' },
+        { sender: 'user2@example.com', subject: 'Project Deadline' },
+        { sender: 'user3@example.com', subject: 'Event Invitation' }
+    ];
+
+    emailList.innerHTML = emails.map(
+        (email) =>
+            `<li><strong>From:</strong> ${email.sender} <br><strong>Subject:</strong> ${email.subject}</li>`
+    ).join('');
+});
+//Form submission 
+document.getElementById('compose-form')?.addEventListener('submit', function (e) {
+    e.preventDefault();
+    alert('Email Sent!');
+    window.location.href = 'inbox.html';
+});

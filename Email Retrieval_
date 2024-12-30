@@ -1,0 +1,14 @@
+import imaplib
+import email
+
+def get_emails(email_user, email_pass):
+    mail = imaplib.IMAP4_SSL('imap.gmail.com')
+    mail.login(email_user, email_pass)
+    mail.select('inbox')
+    status, data = mail.search(None, 'ALL')
+    email_ids = data[0].split()
+    for e_id in email_ids:
+        status, data = mail.fetch(e_id, '(RFC822)')
+        raw_email = data[0][1]
+        msg = email.message_from_bytes(raw_email)
+        print(f"From: {msg['from']}, Subject: {msg['subject']}")
